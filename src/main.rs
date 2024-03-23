@@ -6,8 +6,9 @@ fn main() {
     user_prompt(command)
 }
 
+/// Prompts the user based on the command entered!
 fn user_prompt(command: &str) {
-    // app-info command prints about dsc
+    // app-info: prints about dsc
     if command == "app-info" {
         println!(
             r#"
@@ -24,5 +25,12 @@ version: 0.1.0
  For more info use:
     dsc help   "#
         );
+    }
+    // help: prints list of all commands
+    else if command == "help" {
+        println!("dsc commands:");
+        println!("  dsc      - about dsc");
+        println!("  dsc help - all commands list");
+        println!("  dsc new  - create new app short-cut");
     }
 }
