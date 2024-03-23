@@ -7,19 +7,21 @@ fn main() {
 }
 
 fn user_prompt(command: &str) {
+    // app-info command prints about dsc
     if command == "app-info" {
         println!(
             r#"
 dsc: Desktop short-cut creator ( for Linux Mint )
+version: 0.1.0
     
-  dsc makes Desktop short-cut creation easy for users.
+ dsc makes Desktop short-cut creation easy for users.
     
-    Supported app formats:
+ Supported app formats:
      
-     AppImages,
-     Single binary apps
+    AppImages,
+    Single binary apps
     
-  For more info use:
+ For more info use:
     dsc help   "#
         );
     }
