@@ -1,5 +1,6 @@
 use std::env;
 
+const VERSION: &str = "0.1.0";
 fn main() {
     let args: Vec<String> = env::args().collect();
     let command = if args.len() > 1 { &args[1] } else { "app-info" };
@@ -13,7 +14,7 @@ fn user_prompt(command: &str) {
         println!(
             r#"
 dsc: Desktop short-cut creator ( for Linux Mint )
-version: 0.1.0
+version: {VERSION}
     
  dsc makes Desktop short-cut creation easy for users.
     
@@ -31,6 +32,12 @@ version: 0.1.0
         println!("dsc commands:");
         println!("  dsc      - about dsc");
         println!("  dsc help - all commands list");
+        println!("  dsc version - gives the version of dsc");
         println!("  dsc new  - create new app short-cut");
+    }
+    // version: prints dsc version
+    else if command == "version" {
+        println!("dsc: Desktop short-cut creator");
+        println!("version: {VERSION}");
     }
 }
