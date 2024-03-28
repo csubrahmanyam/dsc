@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Terminal={}
+Exec={}
+Name={}
+Icon={}
+Comment=app
