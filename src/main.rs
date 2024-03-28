@@ -58,26 +58,26 @@ version: {VERSION}
     else if command == "new" {
         loop {
             println!("Enter app name: ");
-            let app_name = input();
-            if app_name == "\n" {
+            let mut app_name = input();
+            if app_name == "" {
                 println!("Enter all fields!");
                 continue;
             }
 
             println!("Enter full path to app:");
-            let app_path = input();
-            if app_path == "\n" {
+            let mut app_path = input();
+            if app_path == "" {
                 println!("Enter all fields!");
                 continue;
             }
 
             println!("Enter full path to app icon (optional):");
             let mut icon_path = input();
-            if icon_path == "\n".to_owned() {
+            if icon_path == "".to_owned() {
                 icon_path = "utilities-terminal".to_owned();
             }
 
-            println!("Always open app in a terminal(y/n): ");
+            println!("Is it a cli app? (y/n): ");
             let terminal: bool = {
                 if input() == "y".to_owned() {
                     true
@@ -85,6 +85,10 @@ version: {VERSION}
                     false
                 }
             };
+            if terminal {
+                // for apps execution in terminal
+                app_path = format!("gnome-terminal -- {}", app_path).to_owned();
+            }
 
             let desktop_entry = DesktopEntry {
                 app_name,
@@ -108,10 +112,11 @@ fn input() -> String {
         Ok(_n) => {}
         Err(_error) => {
             {
-                println!("error!!! \nTry again!");
+                panic!("error!!! \nTry again!");
             };
         }
     }
+    user_input.pop();
     user_input
 }
 
@@ -146,8 +151,7 @@ Comment=app"#,
                 "A short-cut with name '{}' already exists!!",
                 desktop_entry.app_name
             );
-            println!("Try any other name for your short-cut!");
-            file
+            panic!("Try any other name for your short-cut!");
         }
         Err(error) => match fs::File::create(&short_cut_path) {
             Ok(file) => file,
