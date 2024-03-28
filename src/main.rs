@@ -47,6 +47,7 @@ version: {VERSION}
         println!("  dsc help - all commands list");
         println!("  dsc version - gives the version of dsc");
         println!("  dsc new  - create new app short-cut");
+        println!("  dsc author - about author");
     }
     // version: prints dsc version
     else if command == "version" {
@@ -94,6 +95,9 @@ version: {VERSION}
             create_shortcut(desktop_entry);
             break;
         }
+    } else if command == "author" {
+        println!("dsc\n  author: C Subrahmanyam");
+        println!("  credentials: Wrote 'hello world' program in 10 different languages!");
     }
 }
 
